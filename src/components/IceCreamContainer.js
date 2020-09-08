@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { buyCake } from '../redux';
+import { buyIceCream } from '../redux';
 
-function CakeContainer(props) {
+function IceCreamContainer(props) {
   return (
     <div>
-      <h2>Number of Cakes - {props.numOfCakes}</h2>
-      <button onClick={props.buyCake}>Buy Cake</button>
+      <h2>Number of IceCream - {props.numOfIceCreams}</h2>
+      <button onClick={props.buyIceCream}>Buy IceCream</button>
     </div>
   );
 }
@@ -14,16 +14,16 @@ function CakeContainer(props) {
 // First: when you want to access the redux state in your component
 const mapStateToProps = (state) => {
   return {
-    numOfCakes: state.cake.numOfCakes,
+    numOfIceCreams: state.icecream.numOfIceCreams,
   };
 };
 
 // Second: gets the dispatch method as a parameter and allows to map actions creators to props in our component
 const mapDispatchToProps = (dispatch) => {
   return {
-    buyCake: () => dispatch(buyCake()),
+    buyIceCream: () => dispatch(buyIceCream()),
   };
 };
 
 // Third: this connects a react component to the redux store
-export default connect(mapStateToProps, mapDispatchToProps)(CakeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(IceCreamContainer);
