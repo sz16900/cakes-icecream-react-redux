@@ -3,10 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { createStore } from 'redux';
+import allReducers from './reducers';
+import { buyCake } from './actions';
+import { Provider } from 'react-redux';
+
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+console.log('initial state', store.getState());
+const unsubscribe = store.subscribe(() =>
+  console.log('updated state', store.getState())
+);
+store.dispatch(buyCake());
+store.dispatch(buyCake());
+store.dispatch(buyCake());
+unsubscribe();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
